@@ -23,7 +23,7 @@ class SessionValidator extends \Concrete\Core\Session\SessionValidator
                 $lastSessionStartedAt = $userInfo->getLastLogin();
                 /** @var int $currentSessionStartedAt Unix Timestamp */
                 $currentSessionStartedAt = (int) $session->get('uLastLogin');
-                if ($currentSessionStartedAt < $lastSessionStartedAt) {
+                if ($currentSessionStartedAt && $currentSessionStartedAt < $lastSessionStartedAt) {
                     $this->logger->notice('Session Invalidated. The current session is older than recent one.');
                     $invalidate = true;
                 }
